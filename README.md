@@ -1,4 +1,4 @@
-#Apex Ledger Ingestion System (ALIS)
+**Apex Ledger Ingestion System (ALIS)**
 
 1. System Overview
 The Apex Ledger Ingestion System (ALIS) is a local Python data pipeline that automates the discovery, extraction, sanitisation, and relational storage of financial transaction records. The system uses a decoupled architecture to separate operating system file I/O from core data parsing logic.
