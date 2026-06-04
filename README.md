@@ -1,10 +1,10 @@
-Apex Ledger Ingestion System (ALIS)
+# Apex Ledger Ingestion System (ALIS)
 
-1. System Overview
+## **1. System Overview**
 
 The Apex Ledger Ingestion System (ALIS) is a local Python data pipeline that automates the discovery, extraction, sanitisation, and relational storage of financial transaction records. The system uses a decoupled architecture to separate operating system file I/O from core data parsing logic.
 
-Core Objectives
+## **Core Objectives**
 
 Automation: Automates directory scanning and file processing.
 
@@ -14,7 +14,7 @@ Relational Storage: Maps flat text records into structured relational tables ins
 
 Observability: Utilises Python's built-in logging module to record system events, tracking errors and successes instead of using standard console prints.
 
-2. System Architecture & Component Boundaries
+## **2. System Architecture & Component Boundaries**
 
 ALIS separates file handling from parsing logic to adhere to the Single Responsibility Principle (SRP) and improve code testability.
 
@@ -25,7 +25,7 @@ ALIS separates file handling from parsing logic to adhere to the Single Responsi
                                             [ System Logging ]
 
 
-Component Responsibilities
+### Component Responsibilities
 
 main.py (The Driver): Handles physical file system operations. It scans the incoming directory for new files, opens file streams, routes them to the parser, and moves files to an archive directory once processed.
 
@@ -33,9 +33,9 @@ ingestion.py (The Parser): Contains the data transformation logic. It accepts ra
 
 database.py (The Database Controller): Configures the SQLite database connection, establishes table schemas, validates relational constraints, and commits data.
 
-3. Relational Schema & Data Dictionary
+## **3. Relational Schema & Data Dictionary**
 
-Accounts Table
+## Accounts Table
 
 Tracks individual financial accounts.
 
@@ -147,10 +147,7 @@ Archival: The file stream is closed, and the physical CSV file is moved to data/
 
 Split Phase Pattern: Implemented by separating the code into an I/O driver phase and a clean parsing phase (Refactoring, Martin Fowler).[^1]
 
-Hexagonal Architecture Concepts: Isolating the core logic from direct dependencies on external factors like physical hard drive formats.[^2]
-
 ISO 8601: Enforcing standard temporal markers (YYYY-MM-DD) for relational query optimisation.[^3]
 
 [^1]: Fowler, M. (2018). Refactoring: Improving the Design of Existing Code (2nd ed.). Addison-Wesley.
-[^2]: Cockburn, A. (2005). Hexagonal Architecture (Ports and Adapters). Alistair.Cockburn.us.
 [^3]: International Organization for Standardization. (2019). ISO 8601-1:2019 Date and time — Representations for information interchange.
